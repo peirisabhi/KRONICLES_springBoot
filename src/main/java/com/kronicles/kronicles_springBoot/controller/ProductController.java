@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping(path = "/products")
-public class ProductService {
+public class ProductController {
 
     @Autowired
     ProductRepo proRepo;
