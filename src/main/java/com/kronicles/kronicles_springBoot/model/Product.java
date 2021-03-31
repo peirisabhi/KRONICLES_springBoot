@@ -1,30 +1,34 @@
 package com.kronicles.kronicles_springBoot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "product")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String product_name;
     String product_desc;
     String buying_price;
     String selling_price;
     String qty;
-    String catergory_id;
+
+//    @ManyToOne(cascade = CascadeType.MERGE ,fetch = FetchType.EAGER)
+//    @JoinColumn(name = "id")
+@ManyToOne
+@JoinColumn(name="catergory_id")
+    Catergory catergory;
 
     public Product() {
     }
 
-    public Product(int id, String product_name, String product_desc, String buying_price, String selling_price, String qty, String catergory_id) {
+    public Product(int id, String product_name, String product_desc, String buying_price, String selling_price, String qty) {
         this.id = id;
         this.product_name = product_name;
         this.product_desc = product_desc;
         this.buying_price = buying_price;
         this.selling_price = selling_price;
         this.qty = qty;
-        this.catergory_id = catergory_id;
     }
 
     public int getId() {
@@ -75,11 +79,4 @@ public class Product {
         this.qty = qty;
     }
 
-    public String getCatergory_id() {
-        return catergory_id;
-    }
-
-    public void setCatergory_id(String catergory_id) {
-        this.catergory_id = catergory_id;
-    }
 }

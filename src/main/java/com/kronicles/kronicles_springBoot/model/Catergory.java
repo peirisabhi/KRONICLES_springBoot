@@ -1,14 +1,19 @@
 package com.kronicles.kronicles_springBoot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+
 public class Catergory {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String catergory;
     String catergory_desc;
+
+    @OneToMany(mappedBy = "catergory")
+    private List<Product> products;
 
     public Catergory(int id, String catergory, String catergory_desc) {
         this.id = id;
