@@ -22,7 +22,6 @@ public class CategoryController {
     }
     @PostMapping
     public HashMap<String, Object> saveUsers(Catergory users){
-//        return userService.addUser(users);
 
         Catergory user1 = categoryService.addcate(users);
 
