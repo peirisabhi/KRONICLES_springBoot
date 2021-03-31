@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping
-    public HashMap<String, Object> saveUsers(@RequestBody User users){
+    public HashMap<String, Object> saveUsers(User users){
 //        return userService.addUser(users);
 
         User user1 = userService.addUser(users);
