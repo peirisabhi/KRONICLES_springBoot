@@ -4,10 +4,15 @@ import com.kronicles.kronicles_springBoot.Repositories.ProductRepo;
 import com.kronicles.kronicles_springBoot.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Service
+@RestController
+@CrossOrigin(origins = "*",allowedHeaders = "*")
+@RequestMapping(path = "/products")
 public class ProductService {
 
     @Autowired
