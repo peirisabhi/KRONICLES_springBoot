@@ -1,4 +1,4 @@
-package com.kronicles.kronicles_springBoot.Repository;
+package com.kronicles.kronicles_springBoot.Repositories;
 
 import com.kronicles.kronicles_springBoot.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

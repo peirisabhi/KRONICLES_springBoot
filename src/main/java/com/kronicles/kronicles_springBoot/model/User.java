@@ -1,11 +1,12 @@
 package com.kronicles.kronicles_springBoot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String name;
     String telephone;
