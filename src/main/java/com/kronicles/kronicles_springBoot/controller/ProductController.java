@@ -30,26 +30,26 @@ public class ProductController {
         return prodServ.getAllproducts();
     }
 
-    @GetMapping
-    public Product ProductbyId(@PathVariable int pid) {
-        return prodServ.getProductByid(pid);
-    }
+//    @GetMapping
+//    public Product ProductbyId(@PathVariable int pid) {
+//        return prodServ.getProductByid(pid);
+//    }
 
     /*
      * ADD
      * */
 
-    @PostMapping
-    public HashMap<String, Object> saveProdlist(@RequestBody List<Product> products) {
-        prodServ.addProducts(products);
-        HashMap<String, Object> response = new HashMap<>();
-        response.put("status", 200);
-        response.put("data", products);
-        response.put("message", "Success");
-
-        return response;
-
-    }
+//    @PostMapping
+//    public HashMap<String, Object> saveProdlist(@RequestBody List<Product> products) {
+//        prodServ.addProducts(products);
+//        HashMap<String, Object> response = new HashMap<>();
+//        response.put("status", 200);
+//        response.put("data", products);
+//        response.put("message", "Success");
+//
+//        return response;
+//
+//    }
 
     @PostMapping
     public HashMap<String, Object> saveProds(@RequestBody Product product) {
