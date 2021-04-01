@@ -298,7 +298,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div id="div_button_category" class="col-md-offset-3 col-md-9">
-                            <button onclick="show_insert_form()" class="btn btn-info">Add New Category</button>
+                            <button onclick="show_insert_form_category()" class="btn btn-info">Add New Category</button>
                         </div>
                     </div>
                 </div>
@@ -424,7 +424,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div id="div_button_product" class="col-md-offset-3 col-md-9">
-                            <button onclick="show_insert_form()" class="btn btn-info">Add New User</button>
+                            <button onclick="show_insert_form_product()" class="btn btn-info">Add New Product</button>
                         </div>
                     </div>
                 </div>
@@ -650,19 +650,51 @@
         $("#div_add_user").hide();
     }
 
-    function hide_update_form() {
+
+    function show_insert_form_category() {
         var content = '';
-        content += '<button onclick="show_update_form()" class="btn btn-info">Show Update Form</button>';
-        $('#div_button').html(content);
-        $("#div_edit").hide();
+        content += '<button onclick="hide_insert_form_category()" class="btn btn-info">Hide Form</button>';
+        $('#div_button_category').html(content);
+        $("#div_add_category").show();
     }
 
-    function show_update_form() {
+    function hide_insert_form_category() {
         var content = '';
-        content += '<button onclick="hide_update_form()" class="btn btn-info">Hide Form</button>';
-        $('#div_button').html(content);
-        $("#div_edit").show();
+        content += '<button onclick="show_insert_form_category()" class="btn btn-info">Add New Category</button>';
+        $('#div_button_category').html(content);
+        $("#div_add_category").hide();
     }
+
+    function show_insert_form_product() {
+        var content = '';
+        content += '<button onclick="hide_insert_form_product()" class="btn btn-info">Hide Form</button>';
+        $('#div_button_product').html(content);
+        $("#div_add").show();
+    }
+
+    function hide_insert_form_product() {
+        var content = '';
+        content += '<button onclick="show_insert_form_product()" class="btn btn-info">Add New Product</button>';
+        $('#div_button_product').html(content);
+        $("#div_add").hide();
+    }
+
+
+
+
+    // function hide_update_form() {
+    //     var content = '';
+    //     content += '<button onclick="show_update_form()" class="btn btn-info">Show Update Form</button>';
+    //     $('#div_button').html(content);
+    //     $("#div_edit").hide();
+    // }
+    //
+    // function show_update_form() {
+    //     var content = '';
+    //     content += '<button onclick="hide_update_form()" class="btn btn-info">Hide Form</button>';
+    //     $('#div_button').html(content);
+    //     $("#div_edit").show();
+    // }
 
 
     function loadTableUser() {
@@ -762,6 +794,8 @@
 
 
         $("#div_add_user").hide();
+        $("#div_add_category").hide();
+        $("#div_add").hide();
 
         user();
 
