@@ -41,7 +41,7 @@ public class ProductController {
 
     @PostMapping
     public HashMap<String, Object> saveProdlist(@RequestBody List<Product> products) {
-
+        prodServ.addProducts(products);
         HashMap<String, Object> response = new HashMap<>();
         response.put("status", 200);
         response.put("data", products);
@@ -53,6 +53,7 @@ public class ProductController {
 
     @PostMapping
     public HashMap<String, Object> saveProds(@RequestBody Product product) {
+        prodServ.addProduct(product);
         HashMap<String, Object> response = new HashMap<>();
         response.put("status", 200);
         response.put("data", product);
@@ -65,7 +66,7 @@ public class ProductController {
      * */
     @DeleteMapping("{id}")
     public HashMap<String, Object> deleteProds(@PathVariable int id) {
-        HashMap<String, Object> map = new HashMap<>();
+        prodServ.deleteproductbyid(id);
         HashMap<String, Object> response = new HashMap<>();
         response.put("status", 200);
         response.put("data", "");
@@ -80,6 +81,7 @@ public class ProductController {
 
     @PutMapping
     public HashMap<String, Object> updateProds(@RequestBody Product prods) {
+        prodServ.updateProd(prods);
         HashMap<String, Object> response = new HashMap<>();
         response.put("status", 200);
         response.put("data", prods);
