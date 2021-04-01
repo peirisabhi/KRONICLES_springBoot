@@ -1,70 +1,92 @@
 package com.kronicles.kronicles_springBoot.controller;
 
 import com.kronicles.kronicles_springBoot.Repositories.ProductRepo;
+import com.kronicles.kronicles_springBoot.Services.ProductService;
+import com.kronicles.kronicles_springBoot.Services.UserService;
 import com.kronicles.kronicles_springBoot.model.Product;
+import com.kronicles.kronicles_springBoot.model.User;
+import org.apache.tomcat.jni.Proc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping(path = "/products")
 public class ProductController {
 
     @Autowired
-    ProductRepo proRepo;
+    ProductService prodServ;
+
 
     /*
-     * Get
+     * GET
      * */
-    public List<Product> getAllproducts() {
-        return proRepo.findAll();
+    @GetMapping
+    public List<Product> getallProds() {
+        return prodServ.getAllproducts();
     }
 
-    public Product getProductByid(int id) {
-        return proRepo.findById(id).orElse(null);
-    }
-
-    /*
-     * Delete
-     * */
-    public String deleteproductbyid(int id) {
-        proRepo.deleteById(id);
-        return "Deleted";
-    }
-
-    public String deleteproduct(Product p) {
-        proRepo.delete(p);
-        return "Deleted";
+    @GetMapping
+    public Product ProductbyId(@PathVariable int pid) {
+        return prodServ.getProductByid(pid);
     }
 
     /*
-     * Update
+     * ADD
      * */
-    public Product updateProd(Product p) {
-        Product prodUpdate = proRepo.findById(p.getId()).orElse(null);
-        if (prodUpdate != null) {
-            prodUpdate.setProduct_desc(p.getProduct_desc());
-            prodUpdate.setProduct_name(p.getProduct_name());
-            prodUpdate.setBuying_price(p.getBuying_price());
-            prodUpdate.setSelling_price(p.getSelling_price());
-        }
-        return prodUpdate;
+
+    @PostMapping
+    public HashMap<String, Object> saveProdlist(@RequestBody List<Product> products) {
+        prodServ.addProducts(products);
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("status", 200);
+        response.put("data", products);
+        response.put("message", "Success");
+
+        return response;
+
+    }
+
+    @PostMapping
+    public HashMap<String, Object> saveProds(@RequestBody Product product) {
+        prodServ.addProduct(product);
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("status", 200);
+        response.put("data", product);
+        response.put("message", "Success");
+        return response;
     }
 
     /*
-     * Insert
+     * DELETE
      * */
-    public List<Product> addProducts(List<Product> prod) {
-        return proRepo.saveAll(prod);
+    @DeleteMapping("{id}")
+    public HashMap<String, Object> deleteProds(@PathVariable int id) {
+        prodServ.deleteproductbyid(id);
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("status", 200);
+        response.put("data", "");
+        response.put("message", "Success");
+        return response;
+
     }
 
-    public Product addProduct(Product prod) {
-        return proRepo.save(prod);
+    /*
+     * UPDATE
+     * */
+
+    @PutMapping
+    public HashMap<String, Object> updateProds(@RequestBody Product prods) {
+        prodServ.updateProd(prods);
+        HashMap<String, Object> response = new HashMap<>();
+        response.put("status", 200);
+        response.put("data", prods);
+        response.put("message", "Success");
+        return response;
     }
 
 
